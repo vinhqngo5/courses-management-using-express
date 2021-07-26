@@ -1,0 +1,13 @@
+@import "variables";
+@import "test";
+/*
+* when watching all the folder, if scss file not have "_" => will crete nre file
+* If have "_" => use as private for import
+*/
+h1 {
+	color: $red-color;
+}
+
+h2 {
+	color: green;
+}

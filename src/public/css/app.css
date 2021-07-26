@@ -1,0 +1,12 @@
+h3 {
+  color: purple; }
+
+/*
+* when watching all the folder, if scss file not have "_" => will crete nre file
+* If have "_" => use as private for import
+*/
+h1 {
+  color: red; }
+
+h2 {
+  color: green; }

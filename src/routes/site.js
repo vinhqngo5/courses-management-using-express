@@ -1,0 +1,12 @@
+/* Có một số phần như home, contact, ..
+đều nằm trong "/" => tạo site.js để route 
+*/
+
+const express = require("express");
+const router = express.Router();
+
+const siteController = require("../app/controllers/siteController")();
+router.use("/search", siteController.search);
+router.use("/", siteController.index);
+
+module.exports = router;

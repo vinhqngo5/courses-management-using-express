@@ -9,7 +9,7 @@
 		"scss": "node-sass -w src/resources/scss/ -o src/public/css/",
 		"dev": "npm-run-all --parallel start scss",
 		"//": "use npx for excute uninstalled package",
-		"prettier": "npx prettier --write ./src/**/*.{js,scss,json}"
+		"prettier": "npx prettier src/.prettierrc --config  --write ./src/**/*.{js,scss}"
 	},
 	"author": "",
 	"license": "ISC",

@@ -10,3 +10,15 @@ h1 {
 
 h2 {
   color: green; }
+
+.card-course-item {
+  height: 470px;
+  margin-top: 16px; }
+
+.btn-primary--modified {
+  position: absolute;
+  left: 20px;
+  bottom: 15px; }
+
+.card-img-top--modified {
+  object-fit: cover; }

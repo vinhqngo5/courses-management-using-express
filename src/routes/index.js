@@ -1,12 +1,12 @@
 const newsRouter = require("./news");
 const siteRouter = require("./site");
 function route(app) {
-	// Route handlers
+  // Route handlers
 
-	app.use("/news", newsRouter);
-	app.use("/", siteRouter);
+  app.use("/news", newsRouter);
+  app.use("/", siteRouter);
 
-	/*
+  /*
     Before split like MVC model
     --------------------------------
 	app.get("/", (req, res) => {

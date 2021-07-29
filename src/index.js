@@ -5,6 +5,10 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+// Connect to database
+const db = require("./config/db");
+db.connect();
+
 const route = require("./routes");
 /**
  * Config static files
@@ -34,7 +38,7 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources/views"));
+app.set("views", path.join(__dirname, "resources", "views"));
 
 // Route init
 route(app);

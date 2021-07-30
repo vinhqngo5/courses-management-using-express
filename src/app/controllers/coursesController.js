@@ -21,7 +21,9 @@ class CoursesController {
     const formData = req.body;
     formData.image = `https://img.youtube.com/vi/${formData.videoID}/sddefault.jpg`;
     const course = new Course(formData);
-    course.save().then(() => res.redirect(`/courses/${formData.slug}`));
+    course
+      .save()
+      .then((addedCourse) => res.redirect(`/courses/${addedCourse.slug}`));
   }
 }
 

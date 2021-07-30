@@ -12,6 +12,17 @@ class CoursesController {
       })
       .catch(next);
   }
+  // [GET] /courses/create => trang tạo thêm khóa học
+  create(req, res, next) {
+    res.render("courses/create");
+  }
+  // [POST] /courses/store => api lưu khóa học
+  store(req, res, next) {
+    const formData = req.body;
+    formData.image = `https://img.youtube.com/vi/${formData.videoID}/sddefault.jpg`;
+    const course = new Course(formData);
+    course.save().then(() => res.redirect(`/courses/${formData.slug}`));
+  }
 }
 
 module.exports = () => new CoursesController();

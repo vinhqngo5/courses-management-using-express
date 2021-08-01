@@ -12,8 +12,10 @@ h2 {
   color: green;
 }
 .card-course-item {
-  height: 470px;
+  height: 440px;
   margin-top: 16px;
+  border-radius: 16px;
+  overflow: hidden;
 }
 .btn-primary--modified {
   position: absolute;
@@ -22,4 +24,40 @@ h2 {
 }
 .card-img-top--modified {
   object-fit: cover;
+}
+.card-text-break {
+  display: block;
+  display: -webkit-box;
+  // max-width: 100%;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-img-top--modified {
+  height: 100%;
+  width: 100%;
+  background-size: auto 310px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: ease-in 0.5s;
+}
+.card-img-top-container:hover .card-img-top--modified {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.card-title--modified {
+  text-decoration: none !important;
+  color: inherit;
+}
+.card-title--modified:hover {
+  color: inherit;
+}
+
+.card-img-top-container {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
 }

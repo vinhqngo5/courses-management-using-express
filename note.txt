@@ -1,0 +1,3 @@
+Một số lưu ý liên quan đến file package.json
+- Khi thư mục parent và child có package.json 
+=> tìm kiếm trong child trước sau đó mới ra ngoài thư mục parent, tuy nhiên đôi khi phải config peer dependencies

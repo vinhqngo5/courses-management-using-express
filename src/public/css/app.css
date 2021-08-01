@@ -56,3 +56,9 @@ h2 {
   height: 200px;
   width: 100%;
   overflow: hidden; }
+
+.user-avt {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 4px; }

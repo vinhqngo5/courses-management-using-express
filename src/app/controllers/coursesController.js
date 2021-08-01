@@ -16,6 +16,20 @@ class CoursesController {
   create(req, res, next) {
     res.render("courses/create");
   }
+  // [GET] /courses/_id/edit => trang tạo sửa khóa học
+  edit(req, res, next) {
+    Course.findById(req.params.id)
+      .then((course) =>
+        res.render("courses/edit", { course: mongooseToObject(course) })
+      )
+      .catch(next);
+  }
+  // [PUT] /courses/:id => put sửa khóa học
+  update(req, res, next) {
+    Course.updateOne({ _id: req.params.id }, req.body)
+      .then((course) => res.redirect("/me/stored/courses"))
+      .catch(next);
+  }
   // [POST] /courses/store => api lưu khóa học
   store(req, res, next) {
     const formData = req.body;

@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
+const methodOverride = require("method-override");
 const path = require("path");
 const app = express();
 const port = 3000;
@@ -19,6 +20,9 @@ const route = require("./routes");
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// method override middleware
+app.use(methodOverride("_method"));
+
 // Apply body parser middleware
 app.use(
   express.urlencoded({
@@ -35,6 +39,12 @@ app.engine(
   "hbs",
   handlebars({
     extname: ".hbs",
+    /**
+     * function helper for handlebars
+     */
+    helpers: {
+      sum: (a, b) => a + b,
+    },
   })
 );
 app.set("view engine", "hbs");

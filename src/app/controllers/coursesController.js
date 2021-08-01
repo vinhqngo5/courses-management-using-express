@@ -32,6 +32,12 @@ class CoursesController {
   }
   // [DELETE] /courses/:id => xóa khóa học
   delete(req, res, next) {
+    Course.delete({ _id: req.params.id })
+      .then((course) => res.redirect("back"))
+      .catch(next);
+  }
+  // [DELETE] /courses/:id/force => xóa khóa học vĩnh viễn
+  forceDelete(req, res, next) {
     Course.deleteOne({ _id: req.params.id })
       .then((course) => res.redirect("back"))
       .catch(next);
@@ -44,6 +50,12 @@ class CoursesController {
     course
       .save()
       .then((addedCourse) => res.redirect(`/courses/${addedCourse.slug}`));
+  }
+  // [PATCH] /courses/store => restore khóa học đã xóa
+  restore(req, res, next) {
+    Course.restore({ _id: req.params.id })
+      .then((course) => res.redirect("back"))
+      .catch(next);
   }
 }
 

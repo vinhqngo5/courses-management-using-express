@@ -10,6 +10,15 @@ class MeController {
       })
       .catch(next);
   }
+  // [GET] /me/trash/courses tìm các khóa học bị xóa
+  trashCourses(req, res, next) {
+    Course.findDeleted({})
+      .then((courses) => {
+        courses = multipleMongooseToObject(courses);
+        res.render("me/trash-courses", { courses });
+      })
+      .catch(next);
+  }
 }
 
 module.exports = () => new MeController();

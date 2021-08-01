@@ -30,6 +30,12 @@ class CoursesController {
       .then((course) => res.redirect("/me/stored/courses"))
       .catch(next);
   }
+  // [DELETE] /courses/:id => xóa khóa học
+  delete(req, res, next) {
+    Course.deleteOne({ _id: req.params.id })
+      .then((course) => res.redirect("back"))
+      .catch(next);
+  }
   // [POST] /courses/store => api lưu khóa học
   store(req, res, next) {
     const formData = req.body;

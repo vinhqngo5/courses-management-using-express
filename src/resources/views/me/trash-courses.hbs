@@ -116,9 +116,9 @@
     var modalOpenedBySubmitAllButton = false;
     // When click confirm
     $("#delete-course-modal").on("show.bs.modal", function(event) {
+      
       var button = $(event.relatedTarget);
       courseID = button.data("id");
-      console.log(courseID);
     });
     // When modal is turned off after click "Áp dụng"
     $("#delete-course-modal").on("hidden.bs.modal", function(event) {
@@ -127,7 +127,6 @@
     // change action of form related to courseID then submit
     deleteBtn.click(function(event) { 
       event.preventDefault();
-      console.log(deleteForm.action)
       deleteForm.action="/courses/" + courseID + "/force?_method=DELETE"; 
       if (modalOpenedBySubmitAllButton) {
         containerForm.submit();
@@ -181,6 +180,11 @@
       // Nếu là khôi phục => không hiện modal ra
       if (containerForm["action"].value === "restoreAll" || containerForm["action"].value === "" || !isSubmitable) {
         e.stopPropagation();
+      /*
+      *  ở đây stopprop có thể dừng được event show của model 
+      * lý do: modal listen event ở thẻ cha của nó (trong case này là body) 
+      * => nó sẽ dừng lan truyền từ thẻ con qua thẻ cha, cha k nhận dc event click để gọi modal
+      */
       // Nếu là xóa => Hiện modal ra
       } // tránh case nút đang disable nhưng chọn action=deleteAllOne
       else {

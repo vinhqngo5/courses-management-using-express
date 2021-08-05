@@ -5,13 +5,7 @@ class MeController {
   storedCourses(req, res, next) {
     let courseQuery = Course.find({});
 
-    if (req.query.hasOwnProperty("_sort")) {
-      courseQuery = courseQuery.sort({
-        [req.query.column]: req.query.type,
-      });
-    }
-
-    Promise.all([Course.countDocumentsDeleted(), courseQuery])
+    Promise.all([Course.countDocumentsDeleted(), courseQuery.sortable(req)])
       .then(([deletedCount, courses]) => {
         courses = {
           deletedCount,

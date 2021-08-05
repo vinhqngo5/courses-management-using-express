@@ -4,7 +4,7 @@ const mongooseDelete = require("mongoose-delete");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const Course = new Schema(
+const CourseSchema = new Schema(
   {
     name: { type: String, maxLength: 255, required: true },
     description: { type: String, maxLength: 255 },
@@ -18,11 +18,23 @@ const Course = new Schema(
 );
 // Add plugin
 mongoose.plugin(slug);
-Course.plugin(mongooseDelete,{
+CourseSchema.plugin(mongooseDelete, {
   overrideMethods: "all",
   deletedAt: true,
 });
 
+// Add custom query helpers
+CourseSchema.query.sortable = function (req) {
+  if (req.query.hasOwnProperty("_sort")) {
+    const isValidType = ["asc", "desc"].includes(req.query.type);
+    if (isValidType) {
+      return this.sort({
+        [req.query.column]: req.query.type,
+      });
+    }
+    return this;
+  }
+};
 
 /**
  * về cơ bản mongoose.SchemaType là kiểu dữ liệu chỉ đó là 1 SchemaType => là kiểu dữ liệu cho schema.path
@@ -31,4 +43,4 @@ Course.plugin(mongooseDelete,{
  *  mongoose.Schema.Types: chứa nhiều kiểu SchemaType (string, int, ...)
  */
 
-module.exports = mongoose.model("Course", Course);
+module.exports = mongoose.model("Course", CourseSchema);

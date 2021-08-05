@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const methodOverride = require("method-override");
 
-const SortMiddleware = require("./app/middlewares/SortMiddleware");
+const sortMiddleware = require("./app/middlewares/sortMiddleware");
 const path = require("path");
 const app = express();
 const port = 3000;
@@ -34,7 +34,7 @@ app.use(
 app.use(express.json());
 
 // App self-defined middleware
-app.use(SortMiddleware);
+app.use(sortMiddleware);
 
 // HTTP loggers
 app.use(morgan("combined"));
@@ -47,33 +47,7 @@ app.engine(
     /**
      * function helper for handlebars
      */
-    helpers: {
-      sum: (a, b) => a + b,
-      sortable: (field, sort) => {
-        // check if column in req.query is equal with table field
-        const sortType = field === sort.column ? sort.type : "default";
-
-        const icons = {
-          default: "oi oi-elevator",
-          asc: "oi oi-sort-ascending",
-          desc: "oi oi-sort-descending",
-        };
-
-        const nextTypes = {
-          default: "desc",
-          asc: "desc",
-          desc: "asc",
-        };
-        const icon = icons[sortType];
-        const nextType = nextTypes[sortType];
-
-        return `
-          <a href="?_sort&column=${field}&type=${nextType}">
-            <span class="${icon}"></span>
-          </a>
-        `;
-      },
-    },
+    helpers: require("./helpers/handlebars"),
   })
 );
 app.set("view engine", "hbs");

@@ -32,8 +32,8 @@ CourseSchema.query.sortable = function (req) {
         [req.query.column]: req.query.type,
       });
     }
-    return this;
   }
+  return this;
 };
 
 /**

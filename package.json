@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon --inspect src/index.js",
+		"start": "nodemon src/index.js",
 		"scss": "node-sass -w src/resources/scss/ -o src/public/css/",
 		"dev": "npm-run-all --parallel start scss",
 		"//": "use npx for excute uninstalled package",
